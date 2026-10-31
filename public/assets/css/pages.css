@@ -29,7 +29,7 @@
 .hero-art .rg1{width:min(470px,80vw);height:min(470px,80vw);margin:calc(min(470px,80vw)/-2) 0 0 calc(min(470px,80vw)/-2)}
 .hero-art .rg2{width:min(350px,62vw);height:min(350px,62vw);margin:calc(min(350px,62vw)/-2) 0 0 calc(min(350px,62vw)/-2);animation-direction:reverse;animation-duration:30s;border-color:rgba(94,234,212,.28)}
 .hero-art::before{content:"";position:absolute;width:62%;height:62%;border-radius:50%;background:radial-gradient(circle,rgba(139,156,255,.34),transparent 68%);filter:blur(10px)}
-.hero-art .mecha{--ms:clamp(240px,27vw,380px);z-index:2}
+.hero-art .mecha{--ms:clamp(240px,27vw,380px)} /* tanpa z-index: gelembung ucapan (z-index 5) harus berada di atas kartu .fl (z-index 3) */
 .fl{position:absolute;z-index:3;display:flex;align-items:center;gap:12px;padding:12px 18px;border-radius:18px;background:rgba(12,18,40,.88);border:1px solid var(--line2);box-shadow:0 22px 44px -16px rgba(0,0,0,.6);font-weight:700;font-size:.95rem;animation:flt 6s ease-in-out infinite;text-decoration:none;color:var(--ink)}
 .fl b{font-family:var(--f-head);font-size:1.3rem}
 .fl small{display:block;color:var(--mut);font-weight:500;font-size:.8rem}
