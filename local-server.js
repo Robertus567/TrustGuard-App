@@ -2,9 +2,12 @@
 /**
  * Server lokal TrustGuard (tanpa dependensi npm).
  *
- * Dipakai untuk menjalankan aplikasi di komputer sendiri: `node server.js` atau klik start.bat.
+ * Dipakai untuk menjalankan aplikasi di komputer sendiri: `node local-server.js` (atau `npm start`) atau klik start.bat.
  * Saat di-deploy ke Vercel, file ini TIDAK dipakai: Vercel menyajikan folder public/ sebagai situs statis
  * dan menjalankan setiap berkas di folder api/ sebagai serverless function.
+ *
+ * PENTING: jangan menamai file ini server.js, app.js, atau index.js di root proyek. Vercel otomatis menganggap
+ * file bernama itu sebagai backend utama dan mengabaikan folder api/, sehingga Guardian AI dan akun rusak di produksi.
  *
  * Supaya perilaku lokal dan Vercel sama, server ini meniru hal-hal kecil yang disediakan Vercel:
  *  - req.body sudah berupa objek (JSON) untuk POST/PUT,

@@ -39,7 +39,7 @@ Tesseract.js di IndexedDB).
   base64 biner WASM yang tertanam. Dengan `connect-src 'self'` percobaan itu ditolak browser (muncul satu pesan
   error merah di konsol: "Refused to connect ... data:application/octet-stream;base64"), lalu loader otomatis
   beralih mendekode base64 secara sinkron, sehingga OCR tetap berjalan normal (sudah diverifikasi). Bila ingin
-  konsol bersih, tambahkan `data:` pada `connect-src` di `server.js` dan `vercel.json`.
+  konsol bersih, tambahkan `data:` pada `connect-src` di `local-server.js` dan `vercel.json`.
 - Nilai default bila opsi tidak diisi adalah CDN jsDelivr (`https://cdn.jsdelivr.net/npm/tesseract.js-core@v5.1.1`
   dan `https://cdn.jsdelivr.net/npm/@tesseract.js-data/...`); karena `connect-src 'self'`, opsi WAJIB diisi dengan
   jalur lokal seperti yang dilakukan `docscan.js`.

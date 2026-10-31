@@ -57,7 +57,7 @@ Dua bahasa (Indonesia dan Inggris) di seluruh antarmuka, efek suara sintetis (bi
 Prasyarat: **Node.js 18+** (disarankan 20 atau lebih baru). Tidak ada `npm install`.
 
 ```bash
-node server.js
+node local-server.js
 ```
 
 Lalu buka http://127.0.0.1:3000. Di Windows cukup klik dua kali `start.bat` (ia memeriksa Node, membuat `.env`, dan membuka browser). Di Mac/Linux: `./start.sh`.
@@ -80,7 +80,7 @@ Saat server menyala, terminal menampilkan status kunci Gemini, driver database y
 3. **Environment Variables** di Vercel: `GEMINI_API_KEY`, `DATABASE_URL`, `AUTH_SECRET` (buat dengan `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`).
 4. *Deploy*. Uji: buka `/api/auth` (harus `{"enabled":true,"user":null}`), lalu `/signup`.
 
-Catatan: `server.js` hanya untuk lokal; di Vercel tidak dipakai. Driver Neon di `lib/db.js` memakai **endpoint HTTP SQL Neon** lewat `fetch` bawaan Node, sehingga tidak perlu paket npm dan cocok untuk serverless.
+Catatan: `local-server.js` hanya untuk lokal; di Vercel tidak dipakai. Jangan menamainya `server.js`, `app.js`, atau `index.js` di root: Vercel akan menganggapnya backend utama dan mengabaikan folder `api/`. Driver Neon di `lib/db.js` memakai **endpoint HTTP SQL Neon** lewat `fetch` bawaan Node, sehingga tidak perlu paket npm dan cocok untuk serverless.
 
 ## 5. Arsitektur dan alur data
 
@@ -93,7 +93,7 @@ Browser (public/)                                   Server
 │ levels.js  bintang dan tier   │                   │ api/auth.js  ──► lib/auth.js      │
 │ account.js klien akun ────────┼── /api/auth ────► │              ──► lib/db.js ───────│──► Neon PostgreSQL
 │ page-learn.js ────────────────┼── /api/progress ► │ api/progress.js                   │    (atau .data/users.json lokal)
-│ mecha.js  karakter Guardian   │                   │ server.js (lokal) / Vercel (prod) │
+│ mecha.js  karakter Guardian   │                   │ local-server.js (lokal) / Vercel  │
 └───────────────────────────────┘                   └──────────────────────────────────┘
 ```
 
@@ -125,7 +125,7 @@ trustguard/
 │     └─ vendor/ pdf.js, JSZip, Tesseract.js + core WASM, tessdata (lihat CREDITS.md)
 ├─ tests/run.js, tests/account.js   pengujian otomatis tanpa dependensi (35 tes)
 ├─ docs/schema.sql                   skema tabel tg_users
-├─ server.js, start.bat, start.sh, vercel.json, .env.example, package.json
+├─ local-server.js, start.bat, start.sh, vercel.json, .env.example, package.json
 ```
 
 Semua kode berkomentar dalam Bahasa Indonesia dan menjelaskan *mengapa*, bukan hanya *apa*, supaya mudah dirawat orang baru.

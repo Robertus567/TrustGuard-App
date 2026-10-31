@@ -5,8 +5,8 @@ echo ==========================================
 echo   TrustGuard - memulai aplikasi
 echo ==========================================
 echo.
-if exist "server.js" goto haveapp
-echo [X] server.js tidak ditemukan. Ekstrak ZIP dulu (klik kanan, Extract All), lalu jalankan start.bat dari folder hasilnya.
+if exist "local-server.js" goto haveapp
+echo [X] local-server.js tidak ditemukan. Ekstrak ZIP dulu (klik kanan, Extract All), lalu jalankan start.bat dari folder hasilnya.
 goto theend
 :haveapp
 set "PATH=%PATH%;%ProgramW6432%\nodejs;%LocalAppData%\Programs\nodejs"
@@ -34,7 +34,7 @@ echo [OK] Key disimpan di %CD%\.env
 echo.
 echo Menjalankan server. Jangan tutup jendela ini selama aplikasi dipakai.
 set OPEN=1
-node server.js
+node local-server.js
 echo.
 echo [!] Server berhenti. Baca pesan di atas untuk melihat penyebabnya.
 goto theend

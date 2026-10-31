@@ -21,7 +21,7 @@ module.exports = async function accountTests({ test, assert, root }) {
   const authApi = require(path.join(root, 'api/auth.js'));
   const progressApi = require(path.join(root, 'api/progress.js'));
 
-  /* Tiruan req/res dengan bentuk yang sama seperti server.js dan Vercel. */
+  /* Tiruan req/res dengan bentuk yang sama seperti local-server.js dan Vercel. */
   function fakeRes() {
     const r = { code: 200, headers: {}, body: null };
     r.setHeader = (k, v) => { r.headers[k] = v; };
