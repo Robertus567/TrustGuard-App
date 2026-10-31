@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title data-en="Practice | TrustGuard">Latihan | TrustGuard</title>
+<meta name="description" content="40 chapter latihan dalam 8 jalur: kasus singkat, pilihan teraman, penjelasan tiap pilihan, dan 4 tingkat guardian.">
+<meta name="theme-color" content="#060a16">
+<meta name="color-scheme" content="dark">
+<meta property="og:title" content="Latihan | TrustGuard"><meta property="og:description" content="40 chapter latihan dalam 8 jalur: kasus singkat, pilihan teraman, penjelasan tiap pilihan, dan 4 tingkat guardian."><meta property="og:type" content="website"><meta property="og:image" content="/assets/img/og-image.png">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/css/style.css?v=4">
+<link rel="stylesheet" href="/assets/css/mecha.css?v=6">
+<link rel="stylesheet" href="/assets/css/pages.css?v=6">
+<script src="/assets/js/boot.js"></script>
+</head>
+<body data-page="learn">
+<div class="ld" id="ld" aria-hidden="true"><div class="ld-aurora"></div><div class="ld-stars"></div><div class="ld-core"><div class="ld-ring"><i class="o1"></i><i class="o4"></i><i class="o2"></i><i class="o3"></i><i class="d"></i><i class="d d2"></i><i class="d d3"></i><img class="ld-logo" src="/assets/img/logo-mark.svg" alt="" width="160" height="160"></div><div class="ld-name">TRUST<span>GUARD</span></div><div class="ld-tag" id="ldtag">Menyiapkan perisai...</div><div class="ld-bar"><span id="ldbar"></span></div></div></div>
+<noscript><div style="padding:90px 20px 20px;text-align:center">TrustGuard membutuhkan JavaScript. Please enable JavaScript.</div></noscript>
+<main id="main">
+
+<div class="wrap">
+  <div id="listView">
+    <section class="card ln-hero">
+      <div>
+        <h1 data-en="Practice">Latihan</h1>
+        <p data-en="Short real-life cases. Pick the safest move, then read why each option is right or wrong. All examples are fictional.">Kasus singkat dari kehidupan sehari-hari. Pilih langkah paling aman, lalu baca mengapa tiap pilihan benar atau kurang tepat. Semua contoh fiktif.</p>
+        <div class="tierbox" id="tierbox"></div>
+        <div class="ln-stats"><span class="st"><b id="sDone">0/40</b><span data-en="chapters done">chapter selesai</span></span><span class="st"><b id="sPerfect">0</b><span data-en="perfect first try">sempurna di percobaan pertama</span></span><span class="st"><b id="sStars">0</b><span data-en="stars">bintang</span></span></div>
+      </div>
+      <div class="mecha" data-mecha data-pat data-main></div>
+    </section>
+    <div class="ln-note" id="guestNote" hidden><svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="color:var(--gold)"><circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 15.5v.5"/></svg><span data-en="You are practicing as a guest: progress lasts only while this tab is open. Sign in or create a free account to save it and earn tiers.">Kamu berlatih sebagai tamu: progres hanya bertahan selama tab ini terbuka. Masuk atau buat akun gratis untuk menyimpannya dan meraih tier.</span><a class="btn btn-gold btn-sm" id="noteLogin" href="/login?next=%2Flearn" data-en="Sign in">Masuk</a></div>
+    <div class="ctrl"><div class="srch"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input class="in" id="srch" type="search" autocomplete="off" placeholder="Cari judul atau nomor chapter, mis. OTP atau 12" data-en-ph="Search a chapter title or number, e.g. OTP or 12" aria-label="Cari chapter" data-en-aria="Search chapters"></div><p class="muted" id="found" role="status" hidden></p></div>
+    <div id="pathView"><div class="sec-head" style="text-align:left;margin:0 0 16px;max-width:none"><h2 style="font-size:1.4rem" data-en="Pick a path">Pilih jalur</h2></div><div class="paths" id="paths"></div></div>
+    <div id="chapView" hidden><div class="ch-head"><button class="btn btn-gh btn-sm" id="toPaths" type="button" data-snd="x">&larr; <span data-en="All paths">Semua jalur</span></button><h2 id="chTitle"></h2></div><div class="ch-list" id="grid"></div></div>
+  </div>
+  <div id="playView" hidden>
+    <div class="pl-top"><button class="btn btn-gh btn-sm" id="back" type="button" data-snd="x">&larr; <span data-en="Chapter list">Daftar chapter</span></button><div class="row"><button class="btn btn-gh btn-sm" id="prev" type="button" data-snd="x" data-en="Previous">Sebelumnya</button><button class="btn btn-gh btn-sm" id="next" type="button" data-snd="x" data-en="Next">Berikutnya</button></div></div>
+    <div class="pl-grid">
+      <aside class="card pl-side"><div class="mecha" data-mecha data-pat data-main data-nosleep></div><div class="dotsrow" id="dots"></div><p class="muted center" style="font-size:.86rem" data-en="Keys 1, 2, 3 pick an answer.">Tombol 1, 2, 3 memilih jawaban.</p></aside>
+      <section>
+        <h1 style="font-size:clamp(1.5rem,2.6vw,2.1rem);margin-bottom:6px" id="plTitle"></h1><p class="muted" id="plCat" style="margin-bottom:16px"></p>
+        <div class="card case"><div class="from"><i></i><span id="plFrom"></span></div><blockquote id="plMsg"></blockquote></div>
+        <p class="q" data-en="What is the safest move?">Apa langkah paling aman?</p>
+        <div class="opts" id="opts"></div>
+        <div class="result" id="result"></div>
+      </section>
+    </div>
+  </div>
+</div>
+<div class="tierup" id="tierup" aria-live="polite"></div>
+
+</main>
+<script src="/assets/js/core.js?v=3"></script>
+<script src="/assets/js/sound.js?v=5"></script>
+<script src="/assets/js/fx.js?v=3"></script>
+<script src="/assets/js/mecha.js?v=7"></script>
+<script src="/assets/js/levels.js?v=3"></script>
+<script src="/assets/js/account.js?v=3"></script>
+<script src="/assets/js/lessons1.js?v=3"></script>
+<script src="/assets/js/lessons2.js?v=3"></script>
+<script src="/assets/js/chrome.js?v=3"></script>
+<script src="/assets/js/page-learn.js?v=3"></script>
+</body>
+</html>

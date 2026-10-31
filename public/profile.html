@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title data-en="My profile | TrustGuard">Profil saya | TrustGuard</title>
+<meta name="description" content="Profil guardian: nama pengguna, email, tier, bintang, dan kemajuan per jalur latihan.">
+<meta name="theme-color" content="#060a16">
+<meta name="color-scheme" content="dark">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/css/style.css?v=4">
+<link rel="stylesheet" href="/assets/css/mecha.css?v=6">
+<link rel="stylesheet" href="/assets/css/pages.css?v=6">
+<script src="/assets/js/boot.js"></script>
+</head>
+<body data-page="profile">
+<div class="ld" id="ld" aria-hidden="true"><div class="ld-aurora"></div><div class="ld-stars"></div><div class="ld-core"><div class="ld-ring"><i class="o1"></i><i class="o4"></i><i class="o2"></i><i class="o3"></i><i class="d"></i><i class="d d2"></i><i class="d d3"></i><img class="ld-logo" src="/assets/img/logo-mark.svg" alt="" width="160" height="160"></div><div class="ld-name">TRUST<span>GUARD</span></div><div class="ld-tag" id="ldtag">Menyiapkan perisai...</div><div class="ld-bar"><span id="ldbar"></span></div></div></div>
+<noscript><div style="padding:90px 20px 20px;text-align:center">TrustGuard membutuhkan JavaScript. Please enable JavaScript.</div></noscript>
+<main id="main">
+
+<div class="wrap">
+  <div class="ph"><h1 data-en="My profile">Profil saya</h1><p data-en="Your guardian tier, stars, and progress per path. Only you can see this page.">Tier guardian, bintang, dan kemajuanmu per jalur. Halaman ini hanya bisa kamu lihat.</p></div>
+  <div class="card pf-guest" id="guest" hidden>
+    <div class="mecha" data-mecha data-main></div>
+    <h2 data-en="You are not signed in">Kamu belum masuk</h2>
+    <p data-en="Sign in to see your tier and saved progress, or keep practicing as a guest.">Masuk untuk melihat tier dan progres tersimpan, atau lanjut berlatih sebagai tamu.</p>
+    <div class="row" style="justify-content:center"><a class="btn btn-pri" href="/login?next=%2Fprofile" data-en="Sign in">Masuk</a><a class="btn btn-gh" href="/signup" data-en="Create account">Buat akun</a></div>
+  </div>
+  <div class="pf-grid" id="pf" hidden>
+    <aside class="card pf-card" id="pfCard"></aside>
+    <div class="pf-main">
+      <div class="pf-stats" id="pfStats"></div>
+      <section class="panel"><h2 style="font-size:1.3rem;margin-bottom:6px" data-en="Guardian tiers">Tingkatan guardian</h2><p style="margin-bottom:18px" data-en="Stars come from practice: 3 for a correct first try, 2 after a retry, 1 for attempting.">Bintang didapat dari latihan: 3 bila benar di percobaan pertama, 2 setelah mengulang, 1 untuk mencoba.</p><div class="tiers" id="tiers"></div></section>
+      <section class="panel"><h2 style="font-size:1.3rem;margin-bottom:16px" data-en="Progress per path">Kemajuan per jalur</h2><ul class="catprog" id="catprog"></ul><div class="row" style="margin-top:18px"><a class="btn btn-pri" href="/learn" data-en="Continue practice">Lanjutkan latihan</a></div></section>
+      <section class="panel"><h2 style="font-size:1.3rem;margin-bottom:6px" data-en="Your data">Datamu</h2><p data-en="This is everything stored about your account on our server: username, optional email, join date, and practice progress. Passwords are stored only as a hash.">Inilah seluruh data akunmu di server kami: nama pengguna, email opsional, tanggal bergabung, dan progres latihan. Kata sandi hanya disimpan sebagai hash.</p><div class="row" style="margin-top:14px"><button class="btn btn-gh btn-sm" id="exportBtn" type="button" data-snd="x" data-en="Download my data (JSON)">Unduh dataku (JSON)</button><button class="btn btn-gh btn-sm" id="logoutBtn2" type="button" data-snd="x" data-en="Sign out">Keluar</button></div></section>
+      <section class="panel danger"><h2 style="font-size:1.2rem" data-en="Delete account">Hapus akun</h2><p data-en="Permanently removes your account and all progress. Type your password to confirm.">Menghapus akun dan seluruh progres secara permanen. Ketik kata sandimu untuk konfirmasi.</p><div class="row"><input class="in" id="delPw" type="password" autocomplete="current-password" placeholder="Kata sandi" data-en-ph="Password" aria-label="Kata sandi" data-en-aria="Password"><button class="btn btn-bad" id="delBtn" type="button" data-snd="x" data-en="Delete my account">Hapus akunku</button></div></section>
+    </div>
+  </div>
+</div>
+
+</main>
+<script src="/assets/js/core.js?v=3"></script>
+<script src="/assets/js/sound.js?v=5"></script>
+<script src="/assets/js/fx.js?v=3"></script>
+<script src="/assets/js/mecha.js?v=7"></script>
+<script src="/assets/js/levels.js?v=3"></script>
+<script src="/assets/js/account.js?v=3"></script>
+<script src="/assets/js/lessons1.js?v=3"></script>
+<script src="/assets/js/lessons2.js?v=3"></script>
+<script src="/assets/js/chrome.js?v=3"></script>
+<script src="/assets/js/page-profile.js?v=3"></script>
+</body>
+</html>

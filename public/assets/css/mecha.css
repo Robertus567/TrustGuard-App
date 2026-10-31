@@ -1,0 +1,153 @@
+/* ==========================================================================
+   Karakter "Guardian": tata letak, ekspresi (lewat atribut data-*), pose, dan animasi.
+   Semua bagian tubuh adalah grup SVG dengan transform-origin tetap (koordinat viewBox).
+   ========================================================================== */
+.mecha{position:relative;display:flex;flex-direction:column;align-items:center;width:100%;max-width:var(--ms,300px);margin:0 auto;-webkit-user-select:none;user-select:none;--tilt:0deg}
+.mc-stage{position:relative;width:100%;touch-action:none;cursor:grab;-webkit-tap-highlight-color:transparent}
+.mecha.held .mc-stage{cursor:grabbing}
+.mc-drag{transition:transform .65s var(--spring);will-change:transform}
+.mecha.lifted .mc-drag{transition:none}
+.mc-svg{display:block;width:100%;height:auto;overflow:visible;filter:drop-shadow(0 20px 36px rgba(91,140,255,.35))}
+.mc-all{animation:mcFloat 3.6s ease-in-out infinite;transform-origin:120px 160px;transform-box:view-box}
+@keyframes mcFloat{50%{transform:translateY(-7px)}}
+.mecha[data-static] .mc-all{animation:none}
+.mecha.held .mc-all{animation:none;transform:scale(.96,.94)}
+.mc-shadow{transform-origin:120px 306px;transform-box:view-box;animation:mcShadow 3.6s ease-in-out infinite}
+@keyframes mcShadow{50%{transform:scaleX(.84);opacity:.16}}
+.mecha[data-static] .mc-shadow{animation:none}
+
+/* Bagian tubuh yang bergerak */
+.mc-tail{transform-box:view-box;animation:tailL 3.6s ease-in-out infinite}
+.mc-tail.l{transform-origin:74px 120px}.mc-tail.r{transform-origin:166px 120px;animation-name:tailR}
+@keyframes tailL{50%{transform:rotate(4deg)}}@keyframes tailR{50%{transform:rotate(-4deg)}}
+.mc-fin{transform-box:view-box;transform-origin:154px 266px;animation:fin 1.6s ease-in-out infinite}
+@keyframes fin{50%{transform:rotate(-14deg)}}
+.mc-ant{transform-box:view-box;transform-origin:122px 44px;animation:ant 2.8s ease-in-out infinite}
+@keyframes ant{50%{transform:rotate(10deg)}}
+.mecha.wiggle .mc-ant{animation:antWiggle .3s ease-in-out 4}
+@keyframes antWiggle{from{transform:rotate(-16deg)}to{transform:rotate(16deg)}}
+.mc-glow{animation:glow 1.8s ease-in-out infinite alternate}
+@keyframes glow{from{opacity:.5}to{opacity:1}}
+.mc-body{transform-box:view-box;transform-origin:120px 262px;animation:breathe2 3.6s ease-in-out infinite}
+@keyframes breathe2{50%{transform:scale(1.012,1.025)}}
+.mc-head{transform-box:view-box;transform-origin:120px 176px;transition:transform .45s var(--spring);transform:rotate(var(--tilt))}
+.mc-arm,.mc-leg{transform-box:view-box;transition:transform .45s var(--spring)}
+.mc-arm.l{transform-origin:90px 200px}.mc-arm.r{transform-origin:150px 200px}
+.mc-leg.l{transform-origin:108px 252px}.mc-leg.r{transform-origin:131px 252px}
+.mc-cover{opacity:0;transform:translateY(-12px);transition:opacity .2s,transform .3s var(--spring);transform-box:view-box}
+
+/* Ekspresi: semua dimatikan lalu dinyalakan sesuai atribut */
+.mecha .e,.mecha .b,.mecha .m,.mecha .x,.mecha .mc-blush{opacity:0;transition:opacity .16s}
+.mecha[data-eyes=open] .e-open,.mecha[data-eyes=side] .e-open,.mecha[data-eyes=sad] .e-open,.mecha[data-eyes=sad] .e-wet{opacity:1}
+.mecha[data-eyes=squeeze] .e-squeeze,.mecha[data-eyes=happy] .e-happy,.mecha[data-eyes=closed] .e-closed,.mecha[data-eyes=annoy] .e-annoy,.mecha[data-eyes=star] .e-star,.mecha[data-eyes=surp] .e-surp,.mecha[data-eyes=sleepy] .e-sleepy,.mecha[data-eyes=heart] .e-heart{opacity:1}
+.mecha[data-eyes=wink] .e-open.L,.mecha[data-eyes=wink] .e-happy.R{opacity:1}
+.mecha[data-brow=norm] .b-norm,.mecha[data-brow=up] .b-up,.mecha[data-brow=sad] .b-sad,.mecha[data-brow=angry] .b-angry{opacity:1}
+.mecha[data-mouth=smile] .m-smile,.mecha[data-mouth=open] .m-open,.mecha[data-mouth=grin] .m-grin,.mecha[data-mouth=o] .m-o,.mecha[data-mouth=frown] .m-frown,.mecha[data-mouth=pout] .m-pout,.mecha[data-mouth=grump] .m-grump,.mecha[data-mouth=wavy] .m-wavy,.mecha[data-mouth=cat] .m-cat,.mecha[data-mouth=flat] .m-flat{opacity:1}
+.mecha[data-eyes=side] .mc-look{translate:5px -5px}
+.mecha[data-fx~=blush] .mc-blush{opacity:.65}
+.mecha[data-fx~=redblush] .mc-blush{opacity:.9;fill:#ff5470}
+.mecha[data-fx~=sweat] .x-sweat,.mecha[data-fx~=tear] .x-tear,.mecha[data-fx~=vein] .x-vein,.mecha[data-fx~=alert] .x-alert,.mecha[data-fx~=think] .x-think,.mecha[data-fx~=sparkle] .x-sparkle,.mecha[data-fx~=hearts] .x-hearts,.mecha[data-fx~=zzz] .x-zzz,.mecha[data-fx~=quest] .x-quest{opacity:1}
+.x-vein{transform-box:fill-box;transform-origin:center;animation:vein .5s ease-in-out infinite alternate}
+@keyframes vein{to{transform:scale(1.25)}}
+.x-alert{transform-box:fill-box;transform-origin:center bottom;animation:alert .4s ease-in-out infinite alternate}
+@keyframes alert{to{transform:translateY(-4px) scale(1.08)}}
+.x-quest{transform-box:fill-box;transform-origin:center bottom;animation:quest 1.2s ease-in-out infinite alternate}
+@keyframes quest{to{transform:rotate(12deg) translateY(-3px)}}
+.x-tear{animation:tear 1.6s ease-in infinite}
+@keyframes tear{from{transform:translateY(-3px);opacity:.2}to{transform:translateY(14px);opacity:0}}
+.x-think circle{animation:dots 1.2s ease-in-out infinite}.x-think circle:nth-child(2){animation-delay:.2s}.x-think circle:nth-child(3){animation-delay:.4s}
+@keyframes dots{50%{opacity:.25}}
+.x-zzz .z{transform-box:fill-box;transform-origin:center;animation:zzz 2.4s ease-in-out infinite}
+.x-zzz .z2{animation-delay:.8s}.x-zzz .z3{animation-delay:1.6s}
+@keyframes zzz{0%{opacity:0;transform:translate(0,6px) scale(.6)}30%{opacity:1}100%{opacity:0;transform:translate(10px,-22px) scale(1.15)}}
+.mc-sp{transform-box:fill-box;transform-origin:center;animation:sparkle 1.3s ease-in-out infinite}.mc-sp.s2{animation-delay:.5s}.mc-sp.s3{animation-delay:.9s}
+@keyframes sparkle{50%{transform:scale(1.5) rotate(25deg);opacity:.5}}
+.mc-h{opacity:0;transform-box:fill-box}
+.mecha[data-fx~=hearts] .mc-h{animation:heart 1.8s ease-out infinite}
+.mc-h.h2{animation-delay:.4s!important}.mc-h.h3{animation-delay:.9s!important}
+@keyframes heart{0%{opacity:0;transform:translateY(8px) scale(.4)}25%{opacity:1}100%{opacity:0;transform:translateY(-44px) scale(1.2)}}
+
+/* Kedipan mata (dan kedip ganda saat iseng).
+ * Perbaikan: yang dikecilkan sekarang seluruh grup mata (.e-open) dengan titik tumpu di tengah mata sendiri
+ * (transform-box:fill-box). Sebelumnya titik tumpu berada di pojok kiri atas kanvas SVG sehingga mata
+ * "terseret" naik ke atas kepala saat berkedip. */
+.mecha .e-open{transform-box:fill-box;transform-origin:50% 50%}
+.mecha[data-eyes=open] .e-open,.mecha[data-eyes=side] .e-open{animation:blinkLook 5s infinite}
+@keyframes blinkLook{0%,94%,100%{transform:none}97%{transform:scaleY(.08)}}
+.mecha.blink2 .e-open{animation:blink2 .7s ease-in-out 1!important}
+@keyframes blink2{20%,60%{transform:scaleY(.08)}40%,80%{transform:none}}
+
+/* Pose dan suasana hati */
+.mecha[data-m=annoyed] .mc-head{transform:rotate(-5deg) translateY(2px)}
+.mecha[data-m=sad] .mc-head{transform:translateY(5px) rotate(2deg)}
+.mecha[data-m=thinking] .mc-head{transform:rotate(6deg)}
+.mecha[data-m=confused] .mc-head{transform:rotate(-8deg)}
+.mecha[data-m=happy] .mc-head,.mecha[data-m=giggle] .mc-head{transform:rotate(calc(var(--tilt) - 3deg)) translateY(-2px)}
+.mecha[data-m=annoyed] .mc-arm.l{transform:rotate(18deg)}.mecha[data-m=annoyed] .mc-arm.r{transform:rotate(-18deg)}
+.mecha[data-m=alert] .mc-arm.l{transform:rotate(40deg)}.mecha[data-m=alert] .mc-arm.r{transform:rotate(-40deg)}
+.mecha[data-m=thinking] .mc-arm.r{transform:rotate(-120deg) translate(18px,6px)}
+.mecha[data-pose=cheer] .mc-arm.l{transform:rotate(150deg)}.mecha[data-pose=cheer] .mc-arm.r{transform:rotate(-150deg)}
+.mecha[data-pose=cheer] .mc-all{animation:mcJump .55s ease-in-out 3}
+@keyframes mcJump{50%{transform:translateY(-24px)}}
+.mecha[data-pose=hop] .mc-all{animation:mcJump .6s ease-in-out 1}
+.mecha[data-pose=wave] .mc-arm.r{animation:wave .32s ease-in-out 5 alternate}
+@keyframes wave{from{transform:rotate(-135deg)}to{transform:rotate(-170deg)}}
+.mecha[data-pose=spin] .mc-all{animation:spinY .9s var(--ease) 1}
+@keyframes spinY{0%{transform:scaleX(1)}25%{transform:scaleX(.1) translateY(-10px)}50%{transform:scaleX(-1) translateY(-16px)}75%{transform:scaleX(.1) translateY(-10px)}100%{transform:scaleX(1)}}
+.mecha[data-pose=sleepy] .mc-head{transform:rotate(9deg) translateY(5px)}
+.mecha[data-pose=sleepy] .mc-all{animation:mcSleep 4.5s ease-in-out infinite}
+@keyframes mcSleep{50%{transform:translateY(3px) scale(1.01,.985)}}
+.mecha[data-pose=sleepy] .mc-tail,.mecha[data-pose=sleepy] .mc-ant,.mecha[data-pose=sleepy] .mc-fin{animation-play-state:paused}
+.mecha[data-pose=peek] .mc-cover{opacity:1;transform:none}
+.mecha[data-pose=peek] .mc-arm.l{transform:rotate(165deg) translate(0,-6px)}.mecha[data-pose=peek] .mc-arm.r{transform:rotate(-165deg) translate(0,-6px)}
+.mecha.tickle .mc-all{animation:tickle .18s ease-in-out infinite alternate}
+@keyframes tickle{from{transform:rotate(-3deg) translateY(-2px)}to{transform:rotate(3deg) translateY(2px)}}
+.mecha.lifted .mc-all{animation:none}
+.mecha.lifted .mc-leg.l{animation:dangle .5s ease-in-out infinite alternate}.mecha.lifted .mc-leg.r{animation:dangle .5s ease-in-out infinite alternate-reverse}
+@keyframes dangle{from{transform:rotate(14deg)}to{transform:rotate(-14deg)}}
+.mecha.lifted .mc-arm.l,.mecha.lifted .mc-arm.r{animation:flap .25s ease-in-out infinite alternate}.mecha.lifted .mc-arm.r{animation-direction:alternate-reverse}
+@keyframes flap{from{transform:rotate(-26deg)}to{transform:rotate(26deg)}}
+.mecha.lifted .mc-tail{animation-duration:.5s}
+
+/* Elus: tangan menepuk, kepala menyesuaikan */
+.mc-hand{opacity:0;transform:translateY(-34px);transition:opacity .2s;transform-box:view-box}
+.mecha.patting .mc-hand{opacity:1;animation:handPat .52s ease-in-out 4}
+@keyframes handPat{0%,100%{transform:translateY(10px)}50%{transform:translateY(56px)}}
+.mecha.patting .mc-head{animation:headPat .52s ease-in-out 4}
+@keyframes headPat{50%{transform:scaleY(.95) translateY(4px)}}
+.mecha.patting .mc-all{animation:none}
+
+/* Gelembung ucapan: selalu berada DI DALAM kotak karakter supaya tidak terpotong header */
+.mc-say{position:absolute;top:0;left:50%;z-index:5;max-width:min(260px,92%);transform:translate(-50%,-10%) scale(.7);opacity:0;padding:10px 16px;border-radius:18px;background:#f4f7ff;color:#0b1230;font:600 .95rem/1.35 var(--f-body);text-align:center;box-shadow:0 14px 30px -10px rgba(0,0,0,.5);transition:transform .4s var(--spring),opacity .25s;pointer-events:none}
+.mc-say::after{content:"";position:absolute;left:50%;bottom:-7px;width:14px;height:14px;margin-left:-7px;background:#f4f7ff;transform:rotate(45deg);border-radius:3px}
+.mc-say.show{opacity:1;transform:translate(-50%,-10%) scale(1)}
+.mecha[data-crop=head] .mc-say,.mecha[data-static] .mc-say{display:none}
+.mc-pat{margin-top:6px;position:relative}
+.mc-pat .cnt{font-weight:800;color:var(--pink);min-width:1.4em;text-align:left}
+.mc-pat svg{fill:var(--pink);stroke:var(--pink)}
+.mc-pat:hover svg{animation:beat .6s ease-in-out infinite}
+@keyframes beat{50%{transform:scale(1.35)}}
+
+/* Tombol melayang: hanya kepala, dipotong rapi di dalam lingkaran */
+.fab .mecha{width:100%;max-width:none;pointer-events:none;height:100%;justify-content:center}
+.fab .mc-stage{height:100%;display:flex;align-items:center;justify-content:center}
+.fab .mc-svg{filter:none;width:100%;height:100%}
+.fab .mc-all{animation:fabBob 3.2s ease-in-out infinite}
+@keyframes fabBob{50%{transform:translateY(-3px)}}
+.fab:hover .mc-all{animation:fabHi .5s ease-in-out 2}
+@keyframes fabHi{50%{transform:translateY(-8px) rotate(-6deg)}}
+@media(prefers-reduced-motion:reduce){.mc-all,.mc-tail,.mc-ant,.mc-fin,.mc-body,.mc-shadow{animation:none!important}}
+
+/* ===== Setrum: karakter menyetrum pengguna bila terlalu sering ditekan ===== */
+.mecha[data-fx~=zap] .x-zap{opacity:1}
+.x-zap path,.x-zap circle{fill:#ffe66b;stroke:#fff;stroke-width:1.4;stroke-linejoin:round;animation:zapBolt .12s steps(2) infinite}
+.x-zap .z2{animation-delay:.06s}
+@keyframes zapBolt{50%{opacity:.25}}
+.mecha.zapping .mc-all{animation:zapShake .08s linear infinite;filter:drop-shadow(0 0 8px #ffe66b) drop-shadow(0 0 20px #5eead4)}
+@keyframes zapShake{0%{transform:translate(-3px,1px)}25%{transform:translate(3px,-2px)}50%{transform:translate(-2px,-1px)}75%{transform:translate(2px,2px)}100%{transform:translate(-3px,1px)}}
+#tg-zap{position:fixed;inset:0;z-index:2147483000;pointer-events:none;opacity:0;background:#000}
+#tg-zap.on{animation:zapScreen 1.35s linear forwards}
+@keyframes zapScreen{0%{opacity:1;background:#fff}6%{opacity:1;background:#bfe9ff}10%{opacity:1;background:#000}55%{opacity:1;background:#000}60%{opacity:.5;background:#000}66%{opacity:1;background:#000}90%{opacity:1;background:#000}100%{opacity:0;background:#000}}
+body.tg-shock main{animation:tgShock .09s linear infinite}
+@keyframes tgShock{0%{transform:translate(-3px,1px)}50%{transform:translate(3px,-2px)}100%{transform:translate(-2px,2px)}}
+@media (prefers-reduced-motion:reduce){#tg-zap{display:none}body.tg-shock main{animation:none}}

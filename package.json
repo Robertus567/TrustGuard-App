@@ -1,0 +1,12 @@
+{
+  "name": "trustguard",
+  "version": "3.0.0",
+  "description": "TrustGuard: aplikasi web edukasi anti tipuan digital untuk anak muda Indonesia (MIT-Week 2026). Tanpa dependensi npm.",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node tests/run.js"
+  },
+  "engines": { "node": ">=18" }
+}

@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title data-en="Sign in | TrustGuard">Masuk | TrustGuard</title>
+<meta name="description" content="Masuk ke akun TrustGuard untuk menyimpan progres latihan dan tier guardian-mu. Akun bersifat opsional.">
+<meta name="theme-color" content="#060a16">
+<meta name="color-scheme" content="dark">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/css/style.css?v=4">
+<link rel="stylesheet" href="/assets/css/mecha.css?v=6">
+<link rel="stylesheet" href="/assets/css/pages.css?v=6">
+<script src="/assets/js/boot.js"></script>
+</head>
+<body data-page="auth" data-auth="login">
+<div class="ld" id="ld" aria-hidden="true"><div class="ld-aurora"></div><div class="ld-stars"></div><div class="ld-core"><div class="ld-ring"><i class="o1"></i><i class="o4"></i><i class="o2"></i><i class="o3"></i><i class="d"></i><i class="d d2"></i><i class="d d3"></i><img class="ld-logo" src="/assets/img/logo-mark.svg" alt="" width="160" height="160"></div><div class="ld-name">TRUST<span>GUARD</span></div><div class="ld-tag" id="ldtag">Menyiapkan perisai...</div><div class="ld-bar"><span id="ldbar"></span></div></div></div>
+<noscript><div style="padding:90px 20px 20px;text-align:center">TrustGuard membutuhkan JavaScript. Please enable JavaScript.</div></noscript>
+<main id="main">
+
+<div class="wrap au">
+  <div class="au-show">
+    <div class="mecha" data-mecha data-pat data-main data-nosleep></div>
+    <h2 data-en="Welcome back, guardian">Selamat datang kembali, guardian</h2>
+    <p data-en="Sign in to continue your practice right where you left off.">Masuk untuk melanjutkan latihan tepat dari tempat kamu berhenti.</p>
+    <ul class="au-tips">
+      <li><svg viewBox="0 0 24 24"><path d="m5 12 5 5 9-10"/></svg><span data-en="Your progress and tier follow you to any device.">Progres dan tier-mu ikut ke perangkat mana pun.</span></li>
+      <li style="--i:1"><svg viewBox="0 0 24 24"><path d="m5 12 5 5 9-10"/></svg><span data-en="We never ask for your real name, phone, or ID.">Kami tidak pernah meminta nama asli, nomor HP, atau KTP.</span></li>
+      <li style="--i:2"><svg viewBox="0 0 24 24"><path d="m5 12 5 5 9-10"/></svg><span data-en="Guardian covers her eyes while you type your password. Really.">Guardian menutup matanya saat kamu mengetik kata sandi. Beneran.</span></li>
+    </ul>
+  </div>
+  <div class="au-card"><div class="au-in">
+    <div class="au-sw"><a class="on" href="/login" data-en="Sign in">Masuk</a><a href="/signup" data-en="Create account">Buat akun</a></div>
+    <h1 data-en="Sign in">Masuk</h1>
+    <p data-en="Use your username or email.">Pakai nama pengguna atau email.</p>
+    <div class="au-err" id="err" role="alert"></div>
+    <form id="form" novalidate autocomplete="on">
+      <div class="fld"><input id="login" name="username" type="text" placeholder=" " autocomplete="username" required maxlength="120"><label for="login" data-en="Username or email">Nama pengguna atau email</label><i class="bar"></i><small class="hint" id="hLogin"></small></div>
+      <div class="fld"><input id="password" name="password" type="password" placeholder=" " autocomplete="current-password" required maxlength="72"><label for="password" data-en="Password">Kata sandi</label><i class="bar"></i><button type="button" class="eye" id="eye" aria-pressed="false" aria-label="Tampilkan kata sandi" data-en-aria="Show password"><svg viewBox="0 0 24 24"><path d="M2.5 12s3.5-6.5 9.5-6.5 9.5 6.5 9.5 6.5-3.5 6.5-9.5 6.5S2.5 12 2.5 12z"/><circle cx="12" cy="12" r="2.8"/><path class="sl" d="M4 4l16 16"/></svg></button><small class="caps" id="caps" data-en="Caps Lock is on">Caps Lock aktif</small><small class="hint" id="hPassword"></small></div>
+      <button class="btn btn-pri btn-lg au-sub" id="submit" type="submit" data-snd="x"><span class="sp"></span><span class="tx" data-en="Sign in">Masuk</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </form>
+    <p class="au-alt"><span data-en="New here?">Baru di sini?</span> <a href="/signup" id="toSignup" data-en="Create a free account">Buat akun gratis</a> &middot; <a href="/learn" data-en="Continue as guest">Lanjut sebagai tamu</a></p>
+    <p class="au-note" data-en="Signing in sets one strictly necessary cookie (tg_session) that keeps you logged in for 30 days. No trackers, no ads. See the Privacy page.">Masuk memasang satu cookie yang memang diperlukan (tg_session) agar kamu tetap masuk selama 30 hari. Tanpa pelacak, tanpa iklan. Lihat <a href="/privacy#akun">halaman Privasi</a>.</p>
+  </div></div>
+</div>
+
+</main>
+<script src="/assets/js/core.js?v=3"></script>
+<script src="/assets/js/sound.js?v=5"></script>
+<script src="/assets/js/fx.js?v=3"></script>
+<script src="/assets/js/mecha.js?v=7"></script>
+<script src="/assets/js/levels.js?v=3"></script>
+<script src="/assets/js/account.js?v=3"></script>
+<script src="/assets/js/chrome.js?v=3"></script>
+<script src="/assets/js/page-auth.js?v=3"></script>
+</body>
+</html>

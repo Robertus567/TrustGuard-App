@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title data-en="Scanner | TrustGuard">Scanner | TrustGuard</title>
+<meta name="description" content="Periksa pesan, tautan, tangkapan layar, PDF, atau dokumen Word yang mencurigakan dan lihat alasan di balik tiap tanda bahaya. Semuanya berjalan di browser.">
+<meta name="theme-color" content="#060a16">
+<meta name="color-scheme" content="dark">
+<meta property="og:title" content="Scanner | TrustGuard"><meta property="og:description" content="Periksa pesan, tautan, tangkapan layar, PDF, atau dokumen Word yang mencurigakan dan lihat alasan di balik tiap tanda bahaya. Semuanya berjalan di browser."><meta property="og:type" content="website"><meta property="og:image" content="/assets/img/og-image.png">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="/assets/css/style.css?v=4">
+<link rel="stylesheet" href="/assets/css/mecha.css?v=6">
+<link rel="stylesheet" href="/assets/css/pages.css?v=6">
+<script src="/assets/js/boot.js"></script>
+</head>
+<body data-page="scanner">
+<div class="ld" id="ld" aria-hidden="true"><div class="ld-aurora"></div><div class="ld-stars"></div><div class="ld-core"><div class="ld-ring"><i class="o1"></i><i class="o4"></i><i class="o2"></i><i class="o3"></i><i class="d"></i><i class="d d2"></i><i class="d d3"></i><img class="ld-logo" src="/assets/img/logo-mark.svg" alt="" width="160" height="160"></div><div class="ld-name">TRUST<span>GUARD</span></div><div class="ld-tag" id="ldtag">Menyiapkan perisai...</div><div class="ld-bar"><span id="ldbar"></span></div></div></div>
+<noscript><div style="padding:90px 20px 20px;text-align:center">TrustGuard membutuhkan JavaScript. Please enable JavaScript.</div></noscript>
+<main id="main">
+
+<div class="wrap">
+  <div class="ph"><h1 data-en="Scanner">Scanner</h1><p data-en="Paste a message or link, or upload a screenshot, PDF, or Word file. You get a risk level and the reason behind every warning sign. Everything runs in your browser; text and files are never uploaded.">Tempel pesan atau tautan, atau unggah tangkapan layar, PDF, dan berkas Word. Kamu mendapat tingkat risiko dan alasan di balik setiap tanda bahaya. Semua berjalan di browser; teks dan berkas tidak pernah diunggah.</p></div>
+  <div class="sc-grid">
+    <div class="panel">
+      <div class="tabs" role="tablist" aria-label="Jenis input" data-en-aria="Input type">
+        <button type="button" role="tab" id="tabText" aria-selected="true" aria-controls="modeText" data-snd="x"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h7"/></svg><span data-en="Text or link">Teks atau tautan</span></button>
+        <button type="button" role="tab" id="tabDoc" aria-selected="false" aria-controls="modeDoc" data-snd="x"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5M10 13h5M10 17h5"/></svg><span data-en="File or image">Berkas atau gambar</span></button>
+      </div>
+      <div class="mode on" id="modeText" role="tabpanel">
+        <label for="in" data-en="What do you want to check?">Apa yang ingin kamu periksa?</label>
+        <div class="chips" id="chips"></div>
+        <textarea id="in" maxlength="4000" placeholder="Tempel pesan, tautan, atau tawaran mencurigakan di sini..." data-en-ph="Paste a suspicious message, link, or offer here..."></textarea>
+        <div class="warn-sens" id="sens" role="alert" data-en="This text seems to contain sensitive data (like a number or code). Remove it first, the check does not need it.">Teks ini tampaknya memuat data sensitif (seperti nomor atau kode). Hapus dulu, pemeriksaan tidak membutuhkannya.</div>
+        <div class="meta"><span id="cnt">0 / 4000</span><span data-en="Tip: Ctrl+Enter to check">Tips: Ctrl+Enter untuk memeriksa</span></div>
+        <div class="row"><button class="btn btn-pri btn-lg" id="go" type="button" data-snd="x"><span data-en="Check now">Periksa sekarang</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button><button class="btn btn-gh" id="clr" type="button" data-snd="x" data-en="Clear">Hapus</button></div>
+        <div class="note"><svg class="ico" viewBox="0 0 24 24"><path d="M12 4 3 20h18z"/><path d="M12 10v4M12 17v.5"/></svg><span data-en="Do not paste real OTPs, passwords, or ID numbers. Use fictional examples or mask them yourself.">Jangan menempel OTP, kata sandi, atau nomor identitas asli. Gunakan contoh fiktif atau samarkan sendiri.</span></div>
+      </div>
+      <div class="mode" id="modeDoc" role="tabpanel" hidden>
+        <label class="drop" id="drop" for="file"><input type="file" id="file" accept=".pdf,.docx,.txt,.md,.csv,image/png,image/jpeg,image/webp,image/gif,image/bmp,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"><span class="dico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg></span><b data-en="Drop a file here or click to choose">Jatuhkan berkas di sini atau klik untuk memilih</b><p data-en="Screenshots of chats, PDF offers, or Word letters. You can also paste an image with Ctrl+V.">Tangkapan layar chat, PDF tawaran, atau surat Word. Bisa juga tempel gambar dengan Ctrl+V.</p><span class="kinds"><span>PDF</span><span>DOCX</span><span>PNG</span><span>JPG</span><span>WEBP</span><span>TXT</span><span data-en="max 12 MB">maks 12 MB</span></span></label>
+        <div class="filebox" id="filebox" hidden><span class="thumb" id="thumb"></span><span class="fi"><b id="fname"></b><small id="fmeta"></small></span><button class="btn btn-gh btn-sm" id="fclear" type="button" data-snd="x" data-en="Remove">Buang</button></div>
+        <div id="docprog" hidden><div class="pbar busy"><span id="docbar"></span></div><p class="muted" id="doclabel" style="font-size:.9rem"></p></div>
+        <div class="extract" id="extract" hidden><div class="hd2"><span data-en="Extracted text">Teks hasil ekstraksi</span><small id="exmeta"></small></div><textarea id="extxt" maxlength="12000" aria-label="Teks hasil ekstraksi" data-en-aria="Extracted text"></textarea><p class="muted" style="font-size:.88rem" data-en="Check the text, fix OCR mistakes if any, then run the check.">Periksa teksnya, perbaiki salah baca OCR bila ada, lalu jalankan pemeriksaan.</p><div class="row"><button class="btn btn-pri btn-lg" id="goDoc" type="button" data-snd="x"><span data-en="Check extracted text">Periksa teks ini</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div></div>
+        <div class="note info"><svg class="ico" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="11" rx="2"/><path d="M8 20h8M12 16v4"/></svg><span data-en="Files are read on your device with open-source libraries (pdf.js, JSZip, Tesseract OCR). They are never uploaded. OCR for photos is not perfect; blurry images may be misread.">Berkas dibaca di perangkatmu dengan pustaka sumber terbuka (pdf.js, JSZip, Tesseract OCR) dan tidak pernah diunggah. OCR untuk foto tidak sempurna; gambar buram bisa salah terbaca.</span></div>
+      </div>
+    </div>
+    <div class="panel" id="out"><div class="empty"><div class="mecha" data-mecha data-pat data-main></div><h2 data-en="Your result appears here">Hasilmu muncul di sini</h2><p data-en="Pick a sample, paste a message, or upload a file on the left.">Pilih contoh, tempel pesan, atau unggah berkas di sebelah kiri.</p></div></div>
+  </div>
+</div>
+
+</main>
+<script src="/assets/js/core.js?v=3"></script>
+<script src="/assets/js/sound.js?v=5"></script>
+<script src="/assets/js/fx.js?v=3"></script>
+<script src="/assets/js/mecha.js?v=7"></script>
+<script src="/assets/js/levels.js?v=3"></script>
+<script src="/assets/js/account.js?v=3"></script>
+<script src="/assets/js/rules.js?v=3"></script>
+<script src="/assets/js/scan-ui.js?v=3"></script>
+<script src="/assets/js/docscan.js?v=3"></script>
+<script src="/assets/js/chrome.js?v=3"></script>
+<script src="/assets/js/page-scanner.js?v=3"></script>
+</body>
+</html>
