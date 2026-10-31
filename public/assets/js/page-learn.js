@@ -26,7 +26,7 @@
   function stats() {
     var s = Lv.summary(prog, list), lv = Lv.tierFor(s.stars);
     $('#sDone').textContent = s.done + '/' + list.length; $('#sPerfect').textContent = s.perfect; $('#sStars').textContent = s.stars;
-    $('#tierbox').innerHTML = Lv.badge(lv.tier, 58) + '<div class="tb-i"><div class="tb-top"><b>' + esc(Lv.name(lv.tier)) + '</b><small>' + (lv.next ? L('Lagi ' + lv.toNext + ' bintang ke ' + Lv.name(lv.next), lv.toNext + ' more stars to ' + Lv.name(lv.next)) : L('Tier tertinggi tercapai', 'Top tier reached')) + '</small></div><div class="pbar" style="--t1:' + lv.tier.c1 + ';--t2:' + lv.tier.c2 + '"><span style="width:' + Math.round(lv.pct * 100) + '%"></span></div></div>';
+    $('#tierbox').innerHTML = Lv.badge(lv.tier, 58) + '<div class="tb-i"><div class="tb-top"><b>' + esc(Lv.name(lv.tier)) + '</b><small>' + (lv.next ? L(lv.toNext + ' bintang lagi ke ' + Lv.name(lv.next), lv.toNext + ' more stars to ' + Lv.name(lv.next)) : L('Tier tertinggi tercapai', 'Top tier reached')) + '</small></div><div class="pbar" style="--t1:' + lv.tier.c1 + ';--t2:' + lv.tier.c2 + '"><span style="width:' + Math.round(lv.pct * 100) + '%"></span></div></div>';
     var user = Acc.user();
     $('#guestNote').hidden = !!user || !Acc.enabled();
     if (lastTier && lv.tier.i > lastTier) tierUp(lv.tier);
