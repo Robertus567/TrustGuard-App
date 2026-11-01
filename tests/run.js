@@ -70,6 +70,43 @@ const post = (body, ip) => ({ method: 'POST', body, headers: { 'x-forwarded-for'
     const a = TG.analyze('Congratulations! You have won a prize. Pay the processing fee and send your verification code within 10 minutes.');
     assert.strictEqual(a.level, 'high');
   });
+  await test('penagihan pinjol dengan ancaman sebar data dan rekening a/n terdeteksi tinggi', () => {
+    const a = TG.analyze('Kami dari KSP Bina Maju. Pinjaman Anda sebesar Rp 3.500.000 telah jatuh tempo hari ini. Segera bayar ke No. Rek BCA 8830192839 a/n Budi Santoso atau data kontak HP Anda akan kami sebar ke seluruh media sosial.');
+    assert.strictEqual(a.level, 'high');
+    assert.ok(a.found.some((f) => f.id === 'threat') && a.found.some((f) => f.id === 'personal-account'));
+  });
+  await test('lowongan palsu tugas like video + HR via Telegram terdeteksi tinggi', () => {
+    const a = TG.analyze('Halo, kami dari Tim Rekrutmen TikTok Shop. Kami mencari staf paruh waktu untuk menyukai video. Gaji Rp 300.000 - Rp 2.000.000 per hari, kerja dari rumah. Hubungi HR kami via Telegram: @HR_Recruit_ID');
+    assert.strictEqual(a.level, 'high');
+    assert.ok(a.found.some((f) => f.id === 'task-scam') && a.found.some((f) => f.id === 'fake-cs'));
+  });
+  await test('korpus regresi: semua contoh penipuan mencapai tingkat target, semua pesan wajar tetap rendah', () => {
+    const rank = { low: 0, medium: 1, high: 2 };
+    const bad = [];
+    ['a', 'b', 'c'].forEach((n) => {
+      const c = require('./corpus/' + n + '.js');
+      c.SCAM.forEach((x) => { const a = TG.analyze(x[2]); if (rank[a.level] < rank[x[1]]) bad.push('lolos: ' + x[2].slice(0, 70)); });
+      c.LEGIT.forEach((x) => { const t = x[x.length - 1]; const a = TG.analyze(t); if (a.level !== 'low') bad.push('salah tandai: ' + t.slice(0, 70)); });
+    });
+    assert.deepStrictEqual(bad, []);
+  });
+  await test('analyze tetap cepat pada teks panjang dan berulang (tanpa backtracking berlebihan)', () => {
+    const t0 = Date.now();
+    ['a' + ' '.repeat(11000) + 'transfer', 'rekening atas nama '.repeat(600), 'anak anda tidak bisa '.repeat(600) + 'ditangkap', 'video call foto pulsa '.repeat(540)].forEach((t) => TG.analyze(t));
+    assert.ok(Date.now() - t0 < 1500, 'terlalu lambat: ' + (Date.now() - t0) + ' ms');
+  });
+  await test('contoh dari pengguna: aparat narkoba, pinjol, dan tugas like semuanya tinggi', () => {
+    ['Selamat siang, kami dari Direktorat Narkoba Polda. Putra Anda tertangkap membawa barang haram. Untuk menghentikan proses, transfer Rp 20 juta ke rekening 1234567890 a/n Slamet.'].forEach((t) => assert.strictEqual(TG.analyze(t).level, 'high', t));
+  });
+  await test('pesan wajar mirip kata kunci tetap rendah (suka video, gaji, tugas, privasi)', () => {
+    ['Aku suka banget video tutorial kamu, boleh minta link channel-nya? Mau aku subscribe juga.',
+      'Dia menyukai video itu dan membagikannya ke grup kelas kita.',
+      'Gaji bulan ini sudah masuk, nanti malam aku traktir kamu makan ya.',
+      'Besok ada tugas harian matematika halaman 45, dikumpulkan hari Jumat.',
+      'Pesananmu sudah sampai! Beri rating dan ulasan untuk produk ini ya, terima kasih sudah berbelanja.',
+      'Mohon isi kontak darurat pada formulir pendaftaran asrama sebelum hari Senin.'
+    ].forEach((t) => assert.strictEqual(TG.analyze(t).level, 'low', t));
+  });
   await test('sensor: OTP, kartu, telepon, email, KTP', () => {
     const r = TG.redact('OTP 482913, kartu 4111 1111 1111 1111, hp 081234567890, a@b.com, ktp 3201234567890001');
     assert.ok(!/482913|4111|081234|a@b\.com|3201234567890001/.test(r.text), r.text);

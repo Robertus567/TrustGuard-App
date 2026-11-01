@@ -30,7 +30,7 @@ TrustGuard membantu pengguna di tiga momen: saat **ragu** pada sebuah pesan (Sca
 
 | Fitur | Pendekatan | Apa yang dilakukan | Di mana berjalan |
 |---|---|---|---|
-| **Scanner** | Recognize | Tempel pesan, tautan, atau tawaran; dapatkan skor risiko 0-100, tingkat (rendah/sedang/tinggi), dan **alasan untuk setiap tanda bahaya** (19 pola isi pesan + 6 pemeriksaan tautan: domain tiruan merek, ekstensi berisiko, tautan pendek, IP mentah, punycode, berkas APK). | Browser (rules.js) |
+| **Scanner** | Recognize | Tempel pesan, tautan, atau tawaran; dapatkan skor risiko 0-100, tingkat (rendah/sedang/tinggi), dan **alasan untuk setiap tanda bahaya** (36 pola isi pesan + 6 pemeriksaan tautan: domain tiruan merek, ekstensi berisiko, tautan pendek, IP mentah, punycode, berkas APK). | Browser (rules.js) |
 | **Scanner berkas** | Recognize | Unggah **tangkapan layar / foto chat** (OCR), **PDF** (lapisan teks + anotasi tautan), atau **DOCX** (teks + hyperlink). Teks hasil ekstraksi bisa dikoreksi, lalu dianalisis mesin aturan yang sama. | Browser (pdf.js, JSZip, Tesseract.js WebAssembly). Berkas **tidak pernah diunggah**. |
 | **Guardian AI** | Recognize | Ceritakan situasi dengan bahasa sendiri atau tanya hal umum keamanan digital. Jawaban dibangun di atas analisis aturan + **basis pengetahuan terkurasi** (OJK, Komdigi, BI, Polri, KemenPPPA, FTC, CISA, NIST), ditulis oleh Gemini bila tersedia, atau disusun lokal bila tidak. Data sensitif disamarkan dua lapis sebelum keluar. | Server (api/chat.js), opsional Gemini API |
 | **Latihan** | Learn | 40 kasus fiktif realistis dalam **8 jalur** (lowongan kerja, hadiah, penyamaran, investasi dan pinjaman, tautan, akun, belanja, medsos dan hoaks). Tiga pilihan, umpan balik yang menjelaskan **mengapa tiap pilihan benar atau kurang tepat**, bintang, dan **4 tingkat guardian**. | Browser; progres ke server bila masuk akun |
@@ -123,7 +123,7 @@ trustguard/
 │     ├─ fonts/  Sora dan Figtree (self-host, OFL)
 │     ├─ img/    logo, favicon, OG image (karya sendiri)
 │     └─ vendor/ pdf.js, JSZip, Tesseract.js + core WASM, tessdata (lihat CREDITS.md)
-├─ tests/run.js, tests/account.js   pengujian otomatis tanpa dependensi (35 tes)
+├─ tests/run.js, tests/account.js   pengujian otomatis tanpa dependensi (41 tes)
 ├─ docs/schema.sql                   skema tabel tg_users
 ├─ local-server.js, start.bat, start.sh, vercel.json, .env.example, package.json
 ```
@@ -179,7 +179,7 @@ Ringkasan teknis (penjelasan ramah pengguna ada di `/privacy`):
 npm test        # sama dengan: node tests/run.js
 ```
 
-35 tes tanpa dependensi: mesin aturan dan penyensor, klien Gemini terhadap server tiruan (model mati, varian parameter, kunci salah), handler chat (grounding, penyensoran sebelum Gemini, mode produksi, batas laju), pembaca `.env`, serta akun (hash kata sandi, token sesi, merge progres, daftar/masuk/keluar/hapus, CSRF, batas laju, mode nonaktif). Pengujian akun memakai driver berkas di folder sementara.
+41 tes tanpa dependensi: mesin aturan dan penyensor, klien Gemini terhadap server tiruan (model mati, varian parameter, kunci salah), handler chat (grounding, penyensoran sebelum Gemini, mode produksi, batas laju), pembaca `.env`, serta akun (hash kata sandi, token sesi, merge progres, daftar/masuk/keluar/hapus, CSRF, batas laju, mode nonaktif). Pengujian akun memakai driver berkas di folder sementara.
 
 Pemeriksaan manual yang dilakukan sebelum rilis: semua halaman di lebar 1380 px dan 375 px, alur daftar → latihan → progres tersimpan → profil, scanner berkas dengan PDF buatan, DOCX buatan, dan PNG berteks (OCR tepat), serta pemeriksaan tab Network untuk memastikan tidak ada permintaan ke luar situs.
 
